@@ -9,3 +9,5 @@
 ### DFS+BFS
 
 ### Sorting
+
+### Binary Search
