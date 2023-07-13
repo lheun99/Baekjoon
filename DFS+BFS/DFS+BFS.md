@@ -15,7 +15,7 @@ que.append()
 que.appendleft()
 
 que.pop()
-que.left()
+que.popleft()
 
 que.reverse()
 
