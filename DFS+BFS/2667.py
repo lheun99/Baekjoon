@@ -31,6 +31,7 @@ for i in range(n):
         if arr[i][j] == 1:
             answer.append(bfs(arr, i, j))
 
+answer.sort()
 print(len(answer))
 for i in answer:
     print(i)
