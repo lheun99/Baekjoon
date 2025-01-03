@@ -1,39 +1,36 @@
+n = int(input())
+
+arr = [list(map(int, input())) for i in range(n)]
+
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
 from collections import deque
-
-n=int(input())
-graph=[]
-for i in range(n):
-    graph.append(list(map(int, input())))
-visited=[[False for i in range(n)] for j in range(n)]
-
-dx=[-1, 1, 0, 0]
-dy=[0, 0, -1, 1]
-
-def bfs(a, b, graph, visited):
-    que=deque()
-    que.append((a, b))
-    visited[a][b] = True
+def bfs(arr, a, b):
+    q = deque([(a, b)])
+    arr[a][b] = 0
     cnt = 1
-    while que:
-        x, y = que.popleft()
+
+    while q:
+        x, y = q.popleft()
+
         for i in range(4):
-            nx=x+dx[i]
-            ny=y+dy[i]
-            if nx < 0 or nx >= n or ny < 0 or ny >= n:
-                continue
-            elif graph[nx][ny] == 1 and not visited[nx][ny]:
-                cnt += 1
-                que.append((nx, ny))
-                visited[nx][ny] = True
+            nx = x+dx[i] 
+            ny = y+dy[i]
+
+            if 0 <= nx < n and 0 <= ny < n:
+                if arr[nx][ny] == 1:
+                    q.append((nx, ny))
+                    arr[nx][ny] = 0
+                    cnt += 1
     return cnt
 
- 
-res = []
-for a in range(n):
-    for b in range(n):
-        if graph[a][b] == 1 and not visited[a][b]:
-            res.append(bfs(a, b, graph, visited))
-res.sort()          
-print(len(res))   
-for i in res:
+answer = []
+for i in range(n):
+    for j in range(n):
+        if arr[i][j] == 1:
+            answer.append(bfs(arr, i, j))
+
+print(len(answer))
+for i in answer:
     print(i)
