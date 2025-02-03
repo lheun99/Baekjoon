@@ -1,53 +1,41 @@
-from collections import deque
-n, m, k = map(int, input().split())
-arr = [[] for _ in range(n+1)]
+n, m, v = map(int, input().split())
 
-for _ in range(m):
+arr = [[] for i in range(n+1)]
+
+for i in range(m):
     a, b = map(int, input().split())
     arr[a].append(b)
     arr[b].append(a)
 
-for a in arr:
-    a.sort()
+for i in arr:
+    i.sort()
 
-visited_d = [False]*(n+1)
-d_res = []
-
-
-def dfs(graph, v, visited_d):
+# dfs코드
+visited_d = [False] * (n+1)
+def dfs(arr, visited_d, v):
+    print(v, end=' ')
     visited_d[v] = True
-    d_res.append(v)
 
-    for i in graph[v]:
+    for i in arr[v]:
         if not visited_d[i]:
-            dfs(graph, i, visited_d)
+            dfs(arr, visited_d, i)
+dfs(arr, visited_d, v)
 
+print()
 
-dfs(arr, k, visited_d)
-
-
-visited_b = [False]*(n+1)
-b_res = []
-
-
-def bfs(graph, v, visited_b):
-    que = deque([v])
+# bfs코드
+visited_b = [False] * (n+1)
+from collections import deque
+def bfs(arr, visited_b, v):
+    q = deque([v])
     visited_b[v] = True
 
-    while que:
-        v = que.popleft()
-        b_res.append(v)
-
-        for i in graph[v]:
+    while q:
+        a = q.popleft()
+        print(a, end=' ')
+        for i in arr[a]:
             if not visited_b[i]:
-                que.append(i)
+                q.append(i)
                 visited_b[i] = True
+bfs(arr, visited_b, v)
 
-
-bfs(arr, k, visited_b)
-
-for i in d_res:
-    print(i, end=" ")
-print()
-for j in b_res:
-    print(j, end=" ")
