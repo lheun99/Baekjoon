@@ -38,4 +38,3 @@ def bfs(arr, visited_b, v):
                 q.append(i)
                 visited_b[i] = True
 bfs(arr, visited_b, v)
-
