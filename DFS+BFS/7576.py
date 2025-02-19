@@ -36,5 +36,3 @@ for row in arr:
         print(-1)
         exit(0)
 print(max_d)
-
-##
