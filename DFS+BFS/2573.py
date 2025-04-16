@@ -8,7 +8,7 @@ arr = [list(map(int, f().split())) for _ in range(n)]
 dx = [-1, 1, 0, 0]
 dy = [0, 0, -1, 1]
 
-#녹는 빙산
+#녹는 빙산 >> 핵심 !!
 def melt(icebergs):
     # 높이 감소를 한 번에 처리하기 위해 따로 저장
     melt_amount = [[0]*m for _ in range(n)]
